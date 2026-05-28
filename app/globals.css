@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #080810;
+  --color-violet: #7f77dd;
+  --color-teal: #1d9e75;
+  --color-muted: #8b8b9e;
+  --color-surface: #0f0f18;
+
+  --font-display: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-void text-white antialiased;
+    font-family: var(--font-body);
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-violet) 40%, transparent);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .ease-smooth {
+    transition-timing-function: var(--ease-smooth);
+  }
+}
+
+/* Subtle animated grid texture on the void */
+.bg-grid {
+  background-color: var(--color-void);
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--color-violet) 6%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-violet) 6%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 48px 48px;
+  animation: grid-drift 24s linear infinite;
+}
+
+@keyframes grid-drift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 48px 48px;
+  }
+}
+
+@keyframes tag-oscillate {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.tag-float {
+  animation-name: tag-oscillate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.lab-tilt {
+  transform: perspective(800px) rotateY(0deg);
+}
+
+.lab-tilt:hover {
+  transform: perspective(800px) rotateY(-4deg) translateY(-4px);
+}
+
+.heatmap-cell {
+  opacity: 0;
+  animation: heatmap-in 420ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes heatmap-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.protocol-path {
+  stroke-dasharray: 12;
+  animation: protocol-flow 1.8s linear infinite;
+}
+
+@keyframes protocol-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-grid,
+  .tag-float,
+  .heatmap-cell,
+  .protocol-path {
+    animation: none !important;
+  }
+
+  .lab-tilt,
+  .lab-tilt:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "meibaku",
+  "short_name": "meibaku",
+  "description": "Dark dimensional portfolio for 3D web, local-first systems, and protocol design.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080810",
+  "theme_color": "#080810",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

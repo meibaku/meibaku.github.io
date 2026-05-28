@@ -1,0 +1,29 @@
+---
+title: "Scoped Identity Communication Protocol"
+subtitle: "Replacing phone-number addressing with revocable trust tokens."
+updated: "Updated: 2026-05-28"
+---
+
+This system replaces globally static phone numbers with scoped identity tokens.
+
+## Core principles
+
+- **Sovereign control:** people can revoke communication capability at any time.
+- **Scoped trust:** each relationship has isolated token surfaces.
+- **Hardware-backed assurance:** FIDO2 authenticators anchor identity operations.
+- **Protocol composability:** identity endpoints are DID-addressable and transport agnostic.
+
+## Flow
+
+1. A node issues a scoped token.
+2. The token layer binds capability + expiry + revocation route.
+3. Communication resolves against valid token state, not global identity handles.
+
+## Why this matters
+
+Identity should behave like permissions in a secure system:
+
+- explicit
+- minimal
+- revocable
+- auditable
